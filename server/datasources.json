@@ -2,5 +2,75 @@
   "db": {
     "name": "db",
     "connector": "memory"
+  },
+  "coffeeShopsService": {
+    "name": "coffeeShopsService",
+    "connector": "rest",
+    "crud": false,
+    "operations": [
+      {
+        "template": {
+          "method": "GET",
+          "url": "http://0.0.0.0:3017/coffeShops",
+          "headers": {
+            "content-type": "application/json"
+          }
+        },
+        "shared": true,
+        "functions": {
+          "getShopsList": []
+        }
+      },
+      {
+        "template": {
+          "method": "GET",
+          "url": "http://0.0.0.0:3017/coffeShops/{shopId}",
+          "headers": {
+            "content-type": "application/json"
+          }
+        },
+        "shared": true,
+        "functions": {
+          "getShopById": [
+            "shopId"
+          ]
+        }
+      },
+      {
+        "template": {
+          "method": "POST",
+          "url": "http://0.0.0.0:3017/coffeShops",
+          "headers": {
+            "accepts": "application/json",
+            "content-type": "application/json"
+          },
+          "body": "{shopDetails:Object}"
+        },
+        "shared": true,
+        "functions": {
+          "addNewShop": [
+            "shopDetails"
+          ]
+        }
+      },
+      {
+        "template": {
+          "method": "PUT",
+          "url": "http://0.0.0.0:3017/coffeShops/{shopId}",
+          "headers": {
+            "accepts": "application/json",
+            "content-type": "application/json"
+          },
+          "body": "{shopDetails:Object}"
+        },
+        "shared": true,
+        "functions": {
+          "updateShopInfo": [
+            "shopId",
+            "shopDetails"
+          ]
+        }
+      }
+    ]
   }
 }

@@ -1,23 +1,159 @@
 {
   "name": "CoffeeShop",
   "plural": "CoffeeShops",
-  "base": "PersistedModel",
+  "base": "Model",
   "idInjection": true,
   "options": {
     "validateUpsert": true
   },
-  "properties": {
-    "name": {
-      "type": "string",
-      "required": true
-    },
-    "city": {
-      "type": "string",
-      "required": true
-    }
-  },
+  "properties": {},
   "validations": [],
   "relations": {},
   "acls": [],
-  "methods": {}
+  "methods": {
+    "lists": {
+      "isStatic": true,
+      "accepts": [
+        {
+          "arg": "req",
+          "type": "object",
+          "http": {
+            "source": "req"
+          }
+        },
+        {
+          "arg": "res",
+          "type": "object",
+          "http": {
+            "source": "res"
+          }
+        }
+      ],
+      "returns": [
+        {
+          "arg": "shopsList",
+          "root": true
+        }
+      ],
+      "http": {
+        "path": "/",
+        "verb": "get"
+      }
+    },
+    "shop": {
+      "isStatic": true,
+      "accepts": [
+        {
+          "arg": "shopId",
+          "type": "string",
+          "http": {
+            "source": "path"
+          }
+        },
+        {
+          "arg": "req",
+          "type": "object",
+          "http": {
+            "source": "req"
+          }
+        },
+        {
+          "arg": "res",
+          "type": "object",
+          "http": {
+            "source": "res"
+          }
+        }
+      ],
+      "returns": [
+        {
+          "arg": "shopById",
+          "root": true
+        }
+      ],
+      "http": {
+        "path": "/:shopId",
+        "verb": "get"
+      }
+    },
+    "addShop": {
+      "isStatic": true,
+      "accepts": [
+        {
+          "arg": "shopDetail",
+          "type": "Object",
+          "http": {
+            "source": "body"
+          }
+        },
+        {
+          "arg": "req",
+          "type": "object",
+          "http": {
+            "source": "req"
+          }
+        },
+        {
+          "arg": "res",
+          "type": "object",
+          "http": {
+            "source": "res"
+          }
+        }
+      ],
+      "returns": [
+        {
+          "arg": "shopDetail",
+          "root": true
+        }
+      ],
+      "http": {
+        "path": "/",
+        "verb": "post"
+      }
+    },
+    "updateShop": {
+      "isStatic": true,
+      "accepts": [
+        {
+          "arg": "shopId",
+          "type": "string",
+          "http": {
+            "source": "path"
+          }
+        },
+        {
+          "arg": "shopDetail",
+          "type": "Object",
+          "http": {
+            "source": "body"
+          }
+        },
+        {
+          "arg": "req",
+          "type": "object",
+          "http": {
+            "source": "req"
+          }
+        },
+        {
+          "arg": "res",
+          "type": "object",
+          "http": {
+            "source": "res"
+          }
+        }
+      ],
+      "returns": [
+        {
+          "arg": "shopDetail",
+          "root": true
+        }
+      ],
+      "http": {
+        "path": "/:shopId",
+        "verb": "put"
+      }
+    }
+  }
 }

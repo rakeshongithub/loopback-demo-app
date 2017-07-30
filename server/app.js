@@ -1,14 +1,14 @@
+'use strict';
 const loopback = require('loopback');
-const logger = require('./../services/loggers');
+const logger = require('./../common/services/logger-service');
 const app = loopback();
-var responseTime = require('response-time')
 
 /**
  * Server API Start
  * @author RKU143 <rkumar148@sapient.com>
  */
 
-app.middleware('initial', '/api/*', function logResponse(req, res, next) {
+app.middleware('initial', function logResponse(req, res, next) {
   // http://www.senchalabs.org/connect/responseTime.html
   var start = new Date;
   if (res._responseTime) {
@@ -19,7 +19,12 @@ app.middleware('initial', '/api/*', function logResponse(req, res, next) {
   // install a listener for when the response is finished
   res.on('finish', function () { // the request was handled, print the log entry
     var duration = new Date - start;
-    logger.info(req.method, req.originalUrl, res.statusCode, duration + 'ms');
+    logger.info(JSON.stringify({
+      httpMethod: req.method,
+      url: req.originalUrl,
+      statusCode: res.statusCode,
+      responseTime: duration
+    }));
   });
   next();
 });

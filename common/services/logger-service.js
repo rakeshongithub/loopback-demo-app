@@ -1,5 +1,5 @@
 const winston = require('winston');
-const loggerConfig = require('./../server/config.json').logger;
+const loggerConfig = require('./../../server/config.json').logger;
 
 /**
  * Winston logger service
