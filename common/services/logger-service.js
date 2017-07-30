@@ -1,3 +1,4 @@
+'use strict';
 const winston = require('winston');
 const loggerConfig = require('./../../server/config.json').logger;
 
@@ -8,8 +9,8 @@ const loggerConfig = require('./../../server/config.json').logger;
 loggerConfig.console.stringify = obj => JSON.stringify(obj);
 const logger = new winston.Logger({
   transports: [
-    new (winston.transports.Console)(loggerConfig.console)
-  ]
+    new (winston.transports.Console)(loggerConfig.console),
+  ],
 });
 
 module.exports = logger;

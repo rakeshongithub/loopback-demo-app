@@ -4,14 +4,15 @@ const logger = require('./../services/logger-service');
 const resolveLogger = require('./../utils/resolve-logger');
 const errorCodes = require('./../enums/error-codes');
 
-module.exports = function (CoffeeShop) {
-
+module.exports = (CoffeeShop) => {
   // CoffeeShop Model :: to get list of all coffeeShops
-  CoffeeShop.lists = function (req, res, cb) {
+  CoffeeShop.lists = (req, res, cb) => {
     coffeeShopService.getList(CoffeeShop)
       .then((shops) => {
         res.statusCode = 200;
-        logger.info('=> Successfully get the coffee shops list -', resolveLogger({response: {statusCode: res.statusCode}}));
+        logger.info('=> Successfully get the coffee shops list -', resolveLogger({
+          response: {statusCode: res.statusCode},
+        }));
         return cb(null, shops);
       })
       .catch((err) => {
@@ -22,11 +23,13 @@ module.exports = function (CoffeeShop) {
   };
 
   // CoffeeShop Model :: to get one coffee shop detail
-  CoffeeShop.shop = function (shopId, req, res, cb) {
+  CoffeeShop.shop = (shopId, req, res, cb) => {
     coffeeShopService.getShop(CoffeeShop, shopId)
       .then((shops) => {
         res.statusCode = 200;
-        logger.info('=> Successfully get the coffee shop info by ID -', resolveLogger({response: {statusCode: res.statusCode}}));
+        logger.info('=> Successfully get the coffee shop info by ID -', resolveLogger({
+          response: {statusCode: res.statusCode},
+        }));
         return cb(null, shops);
       })
       .catch((err) => {
@@ -37,11 +40,13 @@ module.exports = function (CoffeeShop) {
   };
 
   // CoffeeShop Model :: to get add new coffee shop to the collection
-  CoffeeShop.addShop = function (shopDetail, req, res, cb) {
+  CoffeeShop.addShop = (shopDetail, req, res, cb) => {
     coffeeShopService.addShop(CoffeeShop, shopDetail)
       .then((shops) => {
         res.statusCode = 201;
-        logger.info('=> Successfully created new coffee shop -', resolveLogger({response: {statusCode: res.statusCode}}));
+        logger.info('=> Successfully created new coffee shop -', resolveLogger({
+          response: {statusCode: res.statusCode},
+        }));
         return cb(null, shops);
       })
       .catch((err) => {
@@ -52,11 +57,13 @@ module.exports = function (CoffeeShop) {
   };
 
   // CoffeeShop Model :: to get update existing coffee shop detail
-  CoffeeShop.updateShop = function (shopId, shopDetail, req, res, cb) {
+  CoffeeShop.updateShop = (shopId, shopDetail, req, res, cb) => {
     coffeeShopService.updateShop(CoffeeShop, shopId, shopDetail)
       .then((shops) => {
         res.statusCode = 204; // can be replace with status code 200
-        logger.info('=> Successfully updated shop info -', shopId, resolveLogger({response: {statusCode: res.statusCode}}));
+        logger.info('=> Successfully updated shop info -', shopId, resolveLogger({
+          response: {statusCode: res.statusCode},
+        }));
         return cb(null, shops);
       })
       .catch((err) => {
@@ -64,5 +71,5 @@ module.exports = function (CoffeeShop) {
         res.statusCode = errorCodes.INTERNAL_SERVER_ERROR;
         cb(null, null);
       });
-  }
+  };
 };

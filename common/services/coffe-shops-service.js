@@ -41,7 +41,7 @@ var coffeeShopService = {
         .then(res => resolve(res))
         .catch(err => reject(createError(errorCodes.INTERNAL_SERVER_ERROR)));
     });
-  }
+  },
 };
 
 // export coffeeShopService for public use

@@ -17,13 +17,13 @@ app.middleware('initial', function logResponse(req, res, next) {
   res._responseTime = true;
 
   // install a listener for when the response is finished
-  res.on('finish', function () { // the request was handled, print the log entry
+  res.on('finish', function() { // the request was handled, print the log entry
     var duration = new Date - start;
     logger.info(JSON.stringify({
       httpMethod: req.method,
       url: req.originalUrl,
       statusCode: res.statusCode,
-      responseTime: duration
+      responseTime: duration,
     }));
   });
   next();
