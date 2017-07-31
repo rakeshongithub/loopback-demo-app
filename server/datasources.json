@@ -11,7 +11,7 @@
       {
         "template": {
           "method": "GET",
-          "url": "http://0.0.0.0:3017/coffeShops",
+          "url": "http://localhost:3017/coffeShops",
           "headers": {
             "content-type": "application/json"
           }
@@ -24,7 +24,7 @@
       {
         "template": {
           "method": "GET",
-          "url": "http://0.0.0.0:3017/coffeShops/{shopId}",
+          "url": "http://localhost:3017/coffeShops/{shopId}",
           "headers": {
             "content-type": "application/json"
           }
@@ -39,7 +39,7 @@
       {
         "template": {
           "method": "POST",
-          "url": "http://0.0.0.0:3017/coffeShops",
+          "url": "http://localhost:3017/coffeShops",
           "headers": {
             "accepts": "application/json",
             "content-type": "application/json"
@@ -56,7 +56,7 @@
       {
         "template": {
           "method": "PUT",
-          "url": "http://0.0.0.0:3017/coffeShops/{shopId}",
+          "url": "http://localhost:3017/coffeShops/{shopId}",
           "headers": {
             "accepts": "application/json",
             "content-type": "application/json"

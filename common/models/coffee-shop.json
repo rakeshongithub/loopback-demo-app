@@ -11,7 +11,7 @@
   "relations": {},
   "acls": [],
   "methods": {
-    "lists": {
+    "getAllCoffeeShopsList": {
       "isStatic": true,
       "accepts": [
         {
@@ -40,7 +40,7 @@
         "verb": "get"
       }
     },
-    "shop": {
+    "getCoffeeShopById": {
       "isStatic": true,
       "accepts": [
         {
@@ -76,7 +76,7 @@
         "verb": "get"
       }
     },
-    "addShop": {
+    "addCoffeeShop": {
       "isStatic": true,
       "accepts": [
         {
@@ -112,7 +112,7 @@
         "verb": "post"
       }
     },
-    "updateShop": {
+    "updateCoffeeShop": {
       "isStatic": true,
       "accepts": [
         {

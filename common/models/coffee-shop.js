@@ -9,7 +9,7 @@ module.exports = (CoffeeShop) => {
   coffeeShopService.hideRemoteMethods(CoffeeShop);
 
   // CoffeeShop Model :: to get list of all coffeeShops
-  CoffeeShop.lists = (req, res, cb) => {
+  CoffeeShop.getAllCoffeeShopsList = (req, res, cb) => {
     coffeeShopService.getList(CoffeeShop)
       .then((shops) => {
         res.statusCode = 200;
@@ -26,7 +26,7 @@ module.exports = (CoffeeShop) => {
   };
 
   // CoffeeShop Model :: to get one coffee shop detail
-  CoffeeShop.shop = (shopId, req, res, cb) => {
+  CoffeeShop.getCoffeeShopById = (shopId, req, res, cb) => {
     coffeeShopService.getShop(CoffeeShop, shopId)
       .then((shops) => {
         res.statusCode = 200;
@@ -43,7 +43,7 @@ module.exports = (CoffeeShop) => {
   };
 
   // CoffeeShop Model :: to get add new coffee shop to the collection
-  CoffeeShop.addShop = (shopDetail, req, res, cb) => {
+  CoffeeShop.addCoffeeShop = (shopDetail, req, res, cb) => {
     coffeeShopService.addShop(CoffeeShop, shopDetail)
       .then((shops) => {
         res.statusCode = 201;
@@ -60,7 +60,7 @@ module.exports = (CoffeeShop) => {
   };
 
   // CoffeeShop Model :: to get update existing coffee shop detail
-  CoffeeShop.updateShop = (shopId, shopDetail, req, res, cb) => {
+  CoffeeShop.updateCoffeeShop = (shopId, shopDetail, req, res, cb) => {
     coffeeShopService.updateShop(CoffeeShop, shopId, shopDetail)
       .then((shops) => {
         res.statusCode = 204; // can be replace with status code 200
