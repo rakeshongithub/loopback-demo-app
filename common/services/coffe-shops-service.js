@@ -1,4 +1,5 @@
 'use strict';
+const _ = require('lodash');
 const createError = require('./../utils/error-handler').createError;
 const errorCodes = require('./../enums/error-codes');
 
@@ -41,6 +42,11 @@ var coffeeShopService = {
         .then(res => resolve(res))
         .catch(err => reject(createError(errorCodes.INTERNAL_SERVER_ERROR)));
     });
+  },
+
+  hideRemoteMethods: (Model) => {
+    const remoteMethods = ['getShopsList', 'getShopById', 'addNewShop', 'invoke', 'updateShopInfo'];
+    _.forEach(remoteMethods, method => Model.disableRemoteMethod(method, true));
   },
 };
 

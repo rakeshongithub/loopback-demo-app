@@ -5,6 +5,9 @@ const resolveLogger = require('./../utils/resolve-logger');
 const errorCodes = require('./../enums/error-codes');
 
 module.exports = (CoffeeShop) => {
+  // CoffeeShop Model :: Hide remote methods
+  coffeeShopService.hideRemoteMethods(CoffeeShop);
+
   // CoffeeShop Model :: to get list of all coffeeShops
   CoffeeShop.lists = (req, res, cb) => {
     coffeeShopService.getList(CoffeeShop)
