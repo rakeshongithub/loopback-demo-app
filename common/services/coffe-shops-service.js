@@ -46,7 +46,7 @@ var coffeeShopService = {
 
   hideRemoteMethods: (Model) => {
     const remoteMethods = ['getShopsList', 'getShopById', 'addNewShop', 'invoke', 'updateShopInfo'];
-    _.forEach(remoteMethods, method => Model.disableRemoteMethod(method, true));
+    _.forEach(remoteMethods, method => Model.disableRemoteMethodByName(method, true));
   },
 };
 

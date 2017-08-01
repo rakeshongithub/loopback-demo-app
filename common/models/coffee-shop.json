@@ -12,7 +12,6 @@
   "acls": [],
   "methods": {
     "getAllCoffeeShopsList": {
-      "isStatic": true,
       "accepts": [
         {
           "arg": "req",
@@ -41,7 +40,6 @@
       }
     },
     "getCoffeeShopById": {
-      "isStatic": true,
       "accepts": [
         {
           "arg": "shopId",
@@ -77,7 +75,6 @@
       }
     },
     "addCoffeeShop": {
-      "isStatic": true,
       "accepts": [
         {
           "arg": "shopDetail",
@@ -113,7 +110,6 @@
       }
     },
     "updateCoffeeShop": {
-      "isStatic": true,
       "accepts": [
         {
           "arg": "shopId",
