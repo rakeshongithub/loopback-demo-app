@@ -9,6 +9,7 @@ Install nodemon globally. `npm install nodemon -g`
 
 `npm start` or `npm run watch` will start server on [http://localhost:3000](http://localhost:3000)
 
+
 ### Usage in Development
 
     npm start - Node server start on http://localhost:3000
@@ -18,11 +19,19 @@ Install nodemon globally. `npm install nodemon -g`
     npm run test - Unit Test
     npm run test:coverage - Unit Test with coverage
     
+
 ## APIs Available
    1. GET - [/thesys/api/CoffeeShops](http://localhost:3000/thesys/api/CoffeeShops)
    2. POST - [/thesys/api/CoffeeShops](http://localhost:3000/thesys/api/CoffeeShops)
    3. GET - [/thesys/api/CoffeeShops/:id](http://localhost:3000/thesys/api/CoffeeShops/3bf4b8eae5674a4e853ced241e832016)
    4. PUT - [/thesys/api/CoffeeShops/:id](http://localhost:3000/thesys/api/CoffeeShops/3bf4b8eae5674a4e853ced241e832016)
+
+
+## Request Header to access APIs
+
+    Content-Type: application/json
+    x-thesys-brand: thesys-cat
+    x-thesys-correlation-id: 8eae5674a4e853ced2413bf4b8eae5ew
 
 **Sample post data**
 
