@@ -14,6 +14,9 @@ Install nodemon globally. `npm install nodemon -g`
     npm start - Node server start on http://localhost:3000
     npm run watch - Node server watcher
     npm run lint - Eslint execution
+    npm run test:lint - Eslint execution for specs
+    npm run test - Unit Test
+    npm run test:coverage - Unit Test with coverage
     
 ## APIs Available
    1. GET - [/thesys/api/CoffeeShops](http://localhost:3000/thesys/api/CoffeeShops)

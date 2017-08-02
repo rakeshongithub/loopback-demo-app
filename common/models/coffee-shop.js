@@ -2,15 +2,16 @@
 const coffeeShopService = require('./../services/coffe-shops-service');
 const logger = require('./../services/logger-service');
 const resolveLogger = require('./../utils/resolve-logger');
+const disableRemoteMethods = require('./../utils/disable-remote-methods');
 const errorCodes = require('./../enums/error-codes');
 
-module.exports = (CoffeeShop) => {
+module.exports = (CoffeeShop, coffeeShopServices = coffeeShopService) => {
   // CoffeeShop Model :: Hide remote methods
-  coffeeShopService.hideRemoteMethods(CoffeeShop);
+  disableRemoteMethods.byName(CoffeeShop);
 
   // CoffeeShop Model :: to get list of all coffeeShops
   CoffeeShop.getAllCoffeeShopsList = (req, res, cb) => {
-    coffeeShopService.getList(CoffeeShop)
+    coffeeShopServices.getList(CoffeeShop)
       .then((shops) => {
         res.statusCode = 200;
         logger.info('=> Successfully get the coffee shops list -', resolveLogger({
@@ -27,7 +28,7 @@ module.exports = (CoffeeShop) => {
 
   // CoffeeShop Model :: to get one coffee shop detail
   CoffeeShop.getCoffeeShopById = (shopId, req, res, cb) => {
-    coffeeShopService.getShop(CoffeeShop, shopId)
+    coffeeShopServices.getShop(CoffeeShop, shopId)
       .then((shops) => {
         res.statusCode = 200;
         logger.info('=> Successfully get the coffee shop info by ID -', resolveLogger({
@@ -44,7 +45,7 @@ module.exports = (CoffeeShop) => {
 
   // CoffeeShop Model :: to get add new coffee shop to the collection
   CoffeeShop.addCoffeeShop = (shopDetail, req, res, cb) => {
-    coffeeShopService.addShop(CoffeeShop, shopDetail)
+    coffeeShopServices.addShop(CoffeeShop, shopDetail)
       .then((shops) => {
         res.statusCode = 201;
         logger.info('=> Successfully created new coffee shop -', resolveLogger({
@@ -61,9 +62,9 @@ module.exports = (CoffeeShop) => {
 
   // CoffeeShop Model :: to get update existing coffee shop detail
   CoffeeShop.updateCoffeeShop = (shopId, shopDetail, req, res, cb) => {
-    coffeeShopService.updateShop(CoffeeShop, shopId, shopDetail)
+    coffeeShopServices.updateShop(CoffeeShop, shopId, shopDetail)
       .then((shops) => {
-        res.statusCode = 204; // can be replace with status code 200
+        res.statusCode = 200; // can be replace with status code 200
         logger.info('=> Successfully updated shop info -', shopId, resolveLogger({
           response: {statusCode: res.statusCode},
         }));

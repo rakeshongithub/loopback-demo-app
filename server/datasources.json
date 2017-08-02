@@ -48,7 +48,7 @@
         },
         "shared": true,
         "functions": {
-          "addNewShop": [
+          "addNewCoffeeShop": [
             "shopDetails"
           ]
         }
@@ -65,7 +65,7 @@
         },
         "shared": true,
         "functions": {
-          "updateShopInfo": [
+          "updateCoffeeShopInfo": [
             "shopId",
             "shopDetails"
           ]

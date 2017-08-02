@@ -1,5 +1,4 @@
 'use strict';
-const _ = require('lodash');
 const createError = require('./../utils/error-handler').createError;
 const errorCodes = require('./../enums/error-codes');
 
@@ -28,7 +27,7 @@ var coffeeShopService = {
   addShop: (CoffeeShop, shopDetails) => {
     return new Promise((resolve, reject) => {
       // coffeeShopsService :: Third party api to add new shop to the collection
-      CoffeeShop.app.models.CoffeeShop.addNewShop(shopDetails)
+      CoffeeShop.app.models.CoffeeShop.addNewCoffeeShop(shopDetails)
         .then(res => resolve(res))
         .catch(err => reject(createError(errorCodes.INTERNAL_SERVER_ERROR)));
     });
@@ -38,16 +37,16 @@ var coffeeShopService = {
   updateShop: (CoffeeShop, shopId, shopDetails) => {
     return new Promise((resolve, reject) => {
       // coffeeShopsService :: Third party api to update info of existing coffee shop
-      CoffeeShop.app.models.CoffeeShop.updateShopInfo(shopId, shopDetails)
+      CoffeeShop.app.models.CoffeeShop.updateCoffeeShopInfo(shopId, shopDetails)
         .then(res => resolve(res))
         .catch(err => reject(createError(errorCodes.INTERNAL_SERVER_ERROR)));
     });
   },
 
-  hideRemoteMethods: (Model) => {
-    const remoteMethods = ['getShopsList', 'getShopById', 'addNewShop', 'invoke', 'updateShopInfo'];
-    _.forEach(remoteMethods, method => Model.disableRemoteMethodByName(method, true));
-  },
+  // hideRemoteMethods: (Model) => {
+  //   const remoteMethods = ['getShopsList', 'getShopById', 'addNewShop', 'invoke', 'updateShopInfo'];
+  //   _.forEach(remoteMethods, method => Model.disableRemoteMethodByName(method, true));
+  // },
 };
 
 // export coffeeShopService for public use
