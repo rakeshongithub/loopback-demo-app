@@ -1,5 +1,5 @@
 'use strict';
-const coffeeShopService = require('./../services/coffe-shops-service');
+const coffeeShopService = require('./../services/coffee-shops-service');
 const logger = require('./../services/logger-service');
 const resolveLogger = require('./../utils/resolve-logger');
 const disableRemoteMethods = require('./../utils/disable-remote-methods');

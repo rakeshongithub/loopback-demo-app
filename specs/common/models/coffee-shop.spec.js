@@ -2,7 +2,7 @@
 /* global expect */
 
 const CoffeeShop = require('../../../common/models/coffee-shop');
-const coffeeShopService = require('../../../common/services/coffe-shops-service');
+const coffeeShopService = require('../../../common/services/coffee-shops-service');
 let mockCoffeeShopLists;
 
 describe('Coffee Shop Model', () => {
