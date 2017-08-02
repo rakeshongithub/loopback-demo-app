@@ -3,6 +3,8 @@
 
 const CoffeeShop = require('../../../common/models/coffee-shop');
 const coffeeShopService = require('../../../common/services/coffee-shops-service');
+const createError = require('./../../../common/utils/error-handler').createError;
+const errorCodes = require('./../../../common/enums/error-codes');
 let mockCoffeeShopLists;
 
 describe('Coffee Shop Model', () => {
@@ -72,7 +74,7 @@ describe('Coffee Shop Model', () => {
         app: {
           models: {
             CoffeeShop: {
-              getShopsList: () => new Promise(reject => reject(coffeeShopsResponseBody)),
+              getShopsList: () => new Promise(reject => reject(createError(errorCodes.INTERNAL_SERVER_ERROR))),
             },
           },
         },
@@ -135,7 +137,7 @@ describe('Coffee Shop Model', () => {
 
     it('should provide 500 when failed to fetch coffee shop paylod', (done) => {
       mockCoffeeShop.app.models.CoffeeShop = {};
-      const getShopById = (shopId) => new Promise(reject => reject(coffeeShopResponseById));
+      const getShopById = (shopId) => new Promise(reject => reject(createError(errorCodes.INTERNAL_SERVER_ERROR)));
       mockCoffeeShopLists = {
         disableRemoteMethodByName: () => true,
         app: {
@@ -159,7 +161,9 @@ describe('Coffee Shop Model', () => {
 
   describe('addCoffeeShop :: Add new coffee shop to the collection', () => {
     it('should provide 500 when failed to create new coffee shop paylod', (done) => {
-      const addNewCoffeeShop = (shopDetails) => new Promise(reject => reject(coffeeShopResponseById));
+      const addNewCoffeeShop = (shopDetails) => new Promise(reject => {
+        return reject(createError(errorCodes.INTERNAL_SERVER_ERROR));
+      });
       mockCoffeeShopLists = {
         disableRemoteMethodByName: () => true,
         app: {
@@ -208,7 +212,7 @@ describe('Coffee Shop Model', () => {
     it('should provide 500 when failed to updated coffee shop info', (done) => {
       const newShopId = '368a3d67ea5f42118f6095772d5996';
       const updateCoffeeShopInfo = (newShopId, coffeeShopResponseById) => new Promise(reject => {
-        return reject(updatedCoffeeShopResponseById);
+        return reject(createError(errorCodes.INTERNAL_SERVER_ERROR));
       });
       mockCoffeeShopLists = {
         disableRemoteMethodByName: () => true,
