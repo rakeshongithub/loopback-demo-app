@@ -32,7 +32,15 @@
   },
   "session": {},
   "auth": {},
-  "parse": {},
+  "parse": {
+    "../common/middleware/headers-validator":{
+      "enabled":true,
+      "paths":[
+        "/*/CoffeeShops/**",
+        "/*/CoffeeShops$"
+      ]
+    }
+  },
   "routes": {
     "loopback#rest": {
       "paths": [
