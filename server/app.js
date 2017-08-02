@@ -39,8 +39,7 @@ app.start = () =>
       const explorerPath = app.get('loopback-component-explorer').mountPath;
       logger.info('SYSTEM', `Web server listening explorer at: ${baseUrl}${explorerPath}`, false);
     }
-
-    logger.info('SYSTEM', `Web server listening explorer at: ${baseUrl}/visualize`, false);
+    // logger.info('SYSTEM', `Web server listening explorer at: ${baseUrl}/visualize`, false);
   });
 
 module.exports = app;
