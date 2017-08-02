@@ -67,7 +67,6 @@ describe('Coffee Shop Model', () => {
 
   describe('getAllCoffeeShopsList :: Get all coffee shop list', () => {
     it('should provide 500 failed to fetch coffee shop collection', (done) => {
-      // mockCoffeeShopLists.disableRemoteMethodByName = () => true;
       mockCoffeeShopLists = {
         disableRemoteMethodByName: () => true,
         app: {
@@ -90,7 +89,6 @@ describe('Coffee Shop Model', () => {
     });
 
     it('should give response 200 successfully fetch coffee shop collection', (done) => {
-      // mockCoffeeShop.disableRemoteMethodByName = () => true;
       mockCoffeeShop = {
         disableRemoteMethodByName: () => true,
         app: {
@@ -161,7 +159,6 @@ describe('Coffee Shop Model', () => {
 
   describe('addCoffeeShop :: Add new coffee shop to the collection', () => {
     it('should provide 500 when failed to create new coffee shop paylod', (done) => {
-      // mockCoffeeShop.app.models.CoffeeShop = {};
       const addNewCoffeeShop = (shopDetails) => new Promise(reject => reject(coffeeShopResponseById));
       mockCoffeeShopLists = {
         disableRemoteMethodByName: () => true,
@@ -209,7 +206,6 @@ describe('Coffee Shop Model', () => {
 
   describe('updateCoffeeShop :: Update existing coffee shop info', () => {
     it('should provide 500 when failed to updated coffee shop info', (done) => {
-      // mockCoffeeShop.app.models.CoffeeShop = {};
       const newShopId = '368a3d67ea5f42118f6095772d5996';
       const updateCoffeeShopInfo = (newShopId, coffeeShopResponseById) => new Promise(reject => {
         return reject(updatedCoffeeShopResponseById);
@@ -235,7 +231,6 @@ describe('Coffee Shop Model', () => {
     });
 
     it('should provide 200 successfully updated coffee shop info', (done) => {
-      // mockCoffeeShop.app.models.CoffeeShop = {};
       const updateCoffeeShopInfo = (shopId, coffeeShopResponseById) => new Promise(resolve => {
         return resolve(updatedCoffeeShopResponseById);
       });

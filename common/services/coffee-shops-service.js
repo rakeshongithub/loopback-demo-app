@@ -9,7 +9,7 @@ var coffeeShopService = {
       // coffeeShopsService :: Third party api for coffeeshops collection
       CoffeeShop.app.models.CoffeeShop.getShopsList()
         .then(res => resolve(res))
-        .catch(err => reject(createError(errorCodes.INTERNAL_SERVER_ERROR)));
+        .catch(() => reject(createError(errorCodes.INTERNAL_SERVER_ERROR)));
     });
   },
 
@@ -19,7 +19,7 @@ var coffeeShopService = {
       // coffeeShopsService :: Third party api to get one shop detail by ID
       CoffeeShop.app.models.CoffeeShop.getShopById(shopId)
         .then(res => resolve(res))
-        .catch(err => reject(createError(errorCodes.INTERNAL_SERVER_ERROR)));
+        .catch(() => reject(createError(errorCodes.INTERNAL_SERVER_ERROR)));
     });
   },
 
@@ -29,7 +29,7 @@ var coffeeShopService = {
       // coffeeShopsService :: Third party api to add new shop to the collection
       CoffeeShop.app.models.CoffeeShop.addNewCoffeeShop(shopDetails)
         .then(res => resolve(res))
-        .catch(err => reject(createError(errorCodes.INTERNAL_SERVER_ERROR)));
+        .catch(() => reject(createError(errorCodes.INTERNAL_SERVER_ERROR)));
     });
   },
 
@@ -39,14 +39,9 @@ var coffeeShopService = {
       // coffeeShopsService :: Third party api to update info of existing coffee shop
       CoffeeShop.app.models.CoffeeShop.updateCoffeeShopInfo(shopId, shopDetails)
         .then(res => resolve(res))
-        .catch(err => reject(createError(errorCodes.INTERNAL_SERVER_ERROR)));
+        .catch(() => reject(createError(errorCodes.INTERNAL_SERVER_ERROR)));
     });
   },
-
-  // hideRemoteMethods: (Model) => {
-  //   const remoteMethods = ['getShopsList', 'getShopById', 'addNewShop', 'invoke', 'updateShopInfo'];
-  //   _.forEach(remoteMethods, method => Model.disableRemoteMethodByName(method, true));
-  // },
 };
 
 // export coffeeShopService for public use
