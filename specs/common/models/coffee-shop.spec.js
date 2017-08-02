@@ -3,9 +3,6 @@
 
 const CoffeeShop = require('../../../common/models/coffee-shop');
 const coffeeShopService = require('../../../common/services/coffee-shops-service');
-const createError = require('./../../../common/utils/error-handler').createError;
-const errorCodes = require('./../../../common/enums/error-codes');
-let mockCoffeeShopLists;
 
 describe('Coffee Shop Model', () => {
   let mockCoffeeShop = {};
@@ -69,34 +66,36 @@ describe('Coffee Shop Model', () => {
 
   describe('getAllCoffeeShopsList :: Get all coffee shop list', () => {
     it('should provide 500 failed to fetch coffee shop collection', (done) => {
-      mockCoffeeShopLists = {
-        disableRemoteMethodByName: () => true,
-        app: {
-          models: {
-            CoffeeShop: {
-              getShopsList: () => new Promise(reject => reject(createError(errorCodes.INTERNAL_SERVER_ERROR))),
-            },
-          },
-        },
-      };
-
-      CoffeeShop(mockCoffeeShopLists, coffeeShopService);
-      const callback = (err, data) => {
-        expect(res.statusCode).toEqual(500);
-        expect(data).toEqual(null);
-        done();
-      };
-      expect(typeof mockCoffeeShopLists.disableRemoteMethodByName).toBe('function');
-      mockCoffeeShop.getAllCoffeeShopsList(req, res, callback);
-    });
-
-    it('should give response 200 successfully fetch coffee shop collection', (done) => {
+      const getShopsList = () => new Error();
       mockCoffeeShop = {
         disableRemoteMethodByName: () => true,
         app: {
           models: {
             CoffeeShop: {
-              getShopsList: () => new Promise(resolve => resolve(coffeeShopsResponseBody)),
+              getShopsList,
+            },
+          },
+        },
+      };
+
+      CoffeeShop(mockCoffeeShop, coffeeShopService);
+      const callback = (err, data) => {
+        expect(res.statusCode).toEqual(500);
+        expect(data).toEqual(null);
+        done();
+      };
+      expect(typeof mockCoffeeShop.disableRemoteMethodByName).toBe('function');
+      mockCoffeeShop.getAllCoffeeShopsList(req, res, callback);
+    });
+
+    it('should give response 200 successfully fetch coffee shop collection', (done) => {
+      const getShopsList = () => new Promise(resolve => resolve(coffeeShopsResponseBody));
+      mockCoffeeShop = {
+        disableRemoteMethodByName: () => true,
+        app: {
+          models: {
+            CoffeeShop: {
+              getShopsList,
             },
           },
         },
@@ -120,7 +119,7 @@ describe('Coffee Shop Model', () => {
         app: {
           models: {
             CoffeeShop: {
-              getShopById: getShopById,
+              getShopById,
             },
           },
         },
@@ -137,45 +136,43 @@ describe('Coffee Shop Model', () => {
 
     it('should provide 500 when failed to fetch coffee shop paylod', (done) => {
       mockCoffeeShop.app.models.CoffeeShop = {};
-      const getShopById = (shopId) => new Promise(reject => reject(createError(errorCodes.INTERNAL_SERVER_ERROR)));
-      mockCoffeeShopLists = {
+      const getShopById = (shopId) => new Error();
+      mockCoffeeShop = {
         disableRemoteMethodByName: () => true,
         app: {
           models: {
             CoffeeShop: {
-              getShopById: getShopById,
+              getShopById,
             },
           },
         },
       };
-      CoffeeShop(mockCoffeeShopLists, coffeeShopService);
+      CoffeeShop(mockCoffeeShop, coffeeShopService);
       const callback = (err, data) => {
         expect(res.statusCode).toEqual(500);
         expect(data).toEqual(null);
         done();
       };
-      expect(typeof mockCoffeeShopLists.disableRemoteMethodByName).toBe('function');
+      expect(typeof mockCoffeeShop.disableRemoteMethodByName).toBe('function');
       mockCoffeeShop.getCoffeeShopById(shopId, req, res, callback);
     });
   });
 
   describe('addCoffeeShop :: Add new coffee shop to the collection', () => {
     it('should provide 500 when failed to create new coffee shop paylod', (done) => {
-      const addNewCoffeeShop = (shopDetails) => new Promise(reject => {
-        return reject(createError(errorCodes.INTERNAL_SERVER_ERROR));
-      });
-      mockCoffeeShopLists = {
+      const addNewCoffeeShop = (shopDetails) => new Error();
+      mockCoffeeShop = {
         disableRemoteMethodByName: () => true,
         app: {
           models: {
             CoffeeShop: {
-              addNewCoffeeShop: addNewCoffeeShop,
+              addNewCoffeeShop,
             },
           },
         },
       };
 
-      CoffeeShop(mockCoffeeShopLists, coffeeShopService);
+      CoffeeShop(mockCoffeeShop, coffeeShopService);
       const callback = (err, data) => {
         expect(res.statusCode).toEqual(500);
         expect(data).toEqual(null);
@@ -192,7 +189,7 @@ describe('Coffee Shop Model', () => {
         app: {
           models: {
             CoffeeShop: {
-              addNewCoffeeShop: addNewCoffeeShop,
+              addNewCoffeeShop,
             },
           },
         },
@@ -211,26 +208,24 @@ describe('Coffee Shop Model', () => {
   describe('updateCoffeeShop :: Update existing coffee shop info', () => {
     it('should provide 500 when failed to updated coffee shop info', (done) => {
       const newShopId = '368a3d67ea5f42118f6095772d5996';
-      const updateCoffeeShopInfo = (newShopId, coffeeShopResponseById) => new Promise(reject => {
-        return reject(createError(errorCodes.INTERNAL_SERVER_ERROR));
-      });
-      mockCoffeeShopLists = {
+      const updateCoffeeShopInfo = (newShopId, coffeeShopResponseById) => new Error();
+      mockCoffeeShop = {
         disableRemoteMethodByName: () => true,
         app: {
           models: {
             CoffeeShop: {
-              updateCoffeeShopInfo: updateCoffeeShopInfo,
+              updateCoffeeShopInfo,
             },
           },
         },
       };
-      CoffeeShop(mockCoffeeShopLists, coffeeShopService);
+      CoffeeShop(mockCoffeeShop, coffeeShopService);
       const callback = (err, data) => {
         expect(res.statusCode).toEqual(500);
         expect(data).toEqual(null);
         done();
       };
-      expect(typeof mockCoffeeShopLists.disableRemoteMethodByName).toBe('function');
+      expect(typeof mockCoffeeShop.disableRemoteMethodByName).toBe('function');
       mockCoffeeShop.updateCoffeeShop(newShopId, shopDetails, req, res, callback);
     });
 
@@ -243,7 +238,7 @@ describe('Coffee Shop Model', () => {
         app: {
           models: {
             CoffeeShop: {
-              updateCoffeeShopInfo: updateCoffeeShopInfo,
+              updateCoffeeShopInfo,
             },
           },
         },

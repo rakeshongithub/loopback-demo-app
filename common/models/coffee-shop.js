@@ -20,7 +20,7 @@ module.exports = (CoffeeShop, coffeeShopServices = coffeeShopService) => {
         return cb(null, shops);
       })
       .catch((err) => {
-        logger.error('Failed to get list of coffee shop -', resolveLogger({error: err}));
+        logger.error('<= Failed to get list of coffee shop -', resolveLogger({error: err}));
         res.statusCode = errorCodes.INTERNAL_SERVER_ERROR;
         cb(null, null);
       });
@@ -37,7 +37,7 @@ module.exports = (CoffeeShop, coffeeShopServices = coffeeShopService) => {
         return cb(null, shops);
       })
       .catch((err) => {
-        logger.error('Failed to get coffee shop info by ID -', resolveLogger({error: err}));
+        logger.error('<= Failed to get coffee shop info by ID -', resolveLogger({error: err}));
         res.statusCode = errorCodes.INTERNAL_SERVER_ERROR;
         cb(null, null);
       });
@@ -54,7 +54,7 @@ module.exports = (CoffeeShop, coffeeShopServices = coffeeShopService) => {
         return cb(null, shops);
       })
       .catch((err) => {
-        logger.error('Failed to create new coffee shop -', resolveLogger({error: err}));
+        logger.error('<= Failed to create new coffee shop -', resolveLogger({error: err}));
         res.statusCode = errorCodes.INTERNAL_SERVER_ERROR;
         cb(null, null);
       });
@@ -71,7 +71,7 @@ module.exports = (CoffeeShop, coffeeShopServices = coffeeShopService) => {
         return cb(null, shops);
       })
       .catch((err) => {
-        logger.error('Failed to update coffee shop info -', shopId, resolveLogger({error: err}));
+        logger.error('<= Failed to update coffee shop info -', shopId, resolveLogger({error: err}));
         res.statusCode = errorCodes.INTERNAL_SERVER_ERROR;
         cb(null, null);
       });
