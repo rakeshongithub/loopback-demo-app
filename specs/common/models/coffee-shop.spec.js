@@ -73,7 +73,7 @@ describe('Coffee Shop Model', () => {
         app: {
           models: {
             CoffeeShop: {
-              getShopsList: () => new Promise(resolve => resolve(coffeeShopsResponseBody)),
+              getShopsList: () => new Promise(reject => reject(coffeeShopsResponseBody)),
             },
           },
         },
@@ -115,6 +115,29 @@ describe('Coffee Shop Model', () => {
   describe('getShopById :: Get coffee shop by Id', () => {
     it('should give response 200 successfully fetch coffee shop paylod', (done) => {
       const getShopById = (shopId) => new Promise(resolve => resolve(coffeeShopResponseById));
+      mockCoffeeShop = {
+        disableRemoteMethodByName: () => true,
+        app: {
+          models: {
+            CoffeeShop: {
+              getShopById: getShopById,
+            },
+          },
+        },
+      };
+      CoffeeShop(mockCoffeeShop, coffeeShopService);
+      const callback = (err, data) => {
+        expect(res.statusCode).toEqual(200);
+        expect(data).toEqual(coffeeShopResponseById);
+        done();
+      };
+      expect(typeof mockCoffeeShop.disableRemoteMethodByName).toBe('function');
+      mockCoffeeShop.getCoffeeShopById(shopId, req, res, callback);
+    });
+
+    it('should provide 500 when failed to fetch coffee shop paylod', (done) => {
+      mockCoffeeShop.app.models.CoffeeShop = {};
+      const getShopById = (shopId) => new Promise(reject => reject(coffeeShopResponseById));
       mockCoffeeShopLists = {
         disableRemoteMethodByName: () => true,
         app: {
@@ -127,43 +150,19 @@ describe('Coffee Shop Model', () => {
       };
       CoffeeShop(mockCoffeeShopLists, coffeeShopService);
       const callback = (err, data) => {
-        expect(res.statusCode).toEqual(200);
-        expect(data).toEqual(coffeeShopsResponseBody);
-        done();
-      };
-      expect(typeof mockCoffeeShopLists.disableRemoteMethodByName).toBe('function');
-      mockCoffeeShop.getAllCoffeeShopsList(req, res, callback);
-    });
-
-    it('should provide 500 when failed to fetch coffee shop paylod', (done) => {
-      // mockCoffeeShop.app.models.CoffeeShop = {};
-      const getShopById = (shopId) => new Promise(resolve => resolve(coffeeShopResponseById));
-      mockCoffeeShop = {
-        disableRemoteMethodByName: () => true,
-        app: {
-          models: {
-            CoffeeShop: {
-              getShopById: getShopById,
-            },
-          },
-        },
-      };
-
-      CoffeeShop(mockCoffeeShop, coffeeShopService);
-      const callback = (err, data) => {
         expect(res.statusCode).toEqual(500);
         expect(data).toEqual(null);
         done();
       };
-      expect(typeof mockCoffeeShop.disableRemoteMethodByName).toBe('function');
-      mockCoffeeShop.getAllCoffeeShopsList(req, res, callback);
+      expect(typeof mockCoffeeShopLists.disableRemoteMethodByName).toBe('function');
+      mockCoffeeShop.getCoffeeShopById(shopId, req, res, callback);
     });
   });
 
   describe('addCoffeeShop :: Add new coffee shop to the collection', () => {
     it('should provide 500 when failed to create new coffee shop paylod', (done) => {
       // mockCoffeeShop.app.models.CoffeeShop = {};
-      const addNewCoffeeShop = (shopDetails) => new Promise(resolve => resolve(coffeeShopResponseById));
+      const addNewCoffeeShop = (shopDetails) => new Promise(reject => reject(coffeeShopResponseById));
       mockCoffeeShopLists = {
         disableRemoteMethodByName: () => true,
         app: {
@@ -212,8 +211,8 @@ describe('Coffee Shop Model', () => {
     it('should provide 500 when failed to updated coffee shop info', (done) => {
       // mockCoffeeShop.app.models.CoffeeShop = {};
       const newShopId = '368a3d67ea5f42118f6095772d5996';
-      const updateCoffeeShopInfo = (newShopId, coffeeShopResponseById) => new Promise(resolve => {
-        return resolve(updatedCoffeeShopResponseById);
+      const updateCoffeeShopInfo = (newShopId, coffeeShopResponseById) => new Promise(reject => {
+        return reject(updatedCoffeeShopResponseById);
       });
       mockCoffeeShopLists = {
         disableRemoteMethodByName: () => true,
