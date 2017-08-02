@@ -14,6 +14,7 @@
     ]
   },
   "CoffeeShop": {
-    "dataSource": "coffeeShopsService"
+    "dataSource": "coffeeShopsService",
+    "public": true
   }
 }
