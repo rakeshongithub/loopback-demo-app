@@ -1,5 +1,5 @@
 {
-  "name": "thesys17",
+  "name": "loopBackDemoAPIs",
   "version": "1.0.0",
   "main": "server/server.js",
   "engines": {
@@ -42,9 +42,9 @@
     "url": ""
   },
   "license": "UNLICENSED",
-  "description": "thesys17",
+  "description": "loopback demo apis",
   "author": {
-    "name": "SAPIENT"
+    "name": "Rakesh Kumar"
   },
   "nyc": {
     "include": [

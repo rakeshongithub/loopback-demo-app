@@ -1,4 +1,4 @@
-# Thesys Cat API
+# Loopback Demo API
 
 ## Available Scripts
 In the project directory, you can run:
@@ -18,20 +18,20 @@ Install nodemon globally. `npm install nodemon -g`
     npm run test:lint - Eslint execution for specs
     npm run test - Unit Test
     npm run test:coverage - Unit Test with coverage
-    
+
 
 ## APIs Available
-   1. GET - [/thesys/api/CoffeeShops](http://localhost:3000/thesys/api/CoffeeShops)
-   2. POST - [/thesys/api/CoffeeShops](http://localhost:3000/thesys/api/CoffeeShops)
-   3. GET - [/thesys/api/CoffeeShops/:id](http://localhost:3000/thesys/api/CoffeeShops/3bf4b8eae5674a4e853ced241e832016)
-   4. PUT - [/thesys/api/CoffeeShops/:id](http://localhost:3000/thesys/api/CoffeeShops/3bf4b8eae5674a4e853ced241e832016)
+   1. GET - [/api/CoffeeShops](http://localhost:3000/api/CoffeeShops)
+   2. POST - [/api/CoffeeShops](http://localhost:3000/api/CoffeeShops)
+   3. GET - [/api/CoffeeShops/:id](http://localhost:3000/api/CoffeeShops/3bf4b8eae5674a4e853ced241e832016)
+   4. PUT - [/api/CoffeeShops/:id](http://localhost:3000/api/CoffeeShops/3bf4b8eae5674a4e853ced241e832016)
 
 
 ## Request Header to access APIs
 
     Content-Type: application/json
-    x-thesys-brand: thesys-cat
-    x-thesys-correlation-id: 8eae5674a4e853ced2413bf4b8eae5ew
+    x-demo-brand: demo-api
+    x-demo-correlation-id: 8eae5674a4e853ced2413bf4b8eae5ew
 
 **Sample post data**
 
@@ -47,4 +47,4 @@ Install nodemon globally. `npm install nodemon -g`
 
 ## License
 
-UNLICENSED © [SAPIENT]
+UNLICENSED © [RAKESH KUMAR]

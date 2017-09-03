@@ -1,5 +1,5 @@
 {
-  "restApiRoot": "/thesys/api",
+  "restApiRoot": "/api",
   "host": "localhost",
   "port": 3000,
   "remoting": {
